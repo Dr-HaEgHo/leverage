@@ -9,6 +9,7 @@ const coins = [
     icon: <Bitcoin size="20" color="#f7931a" variant="Bold" />,
     price: "23,456",
     percent: 0.37,
+    symbol: "BTCUSDT",
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const coins = [
     icon: <EthereumClassic size="20" color="#637eea" variant="Bold" />,
     price: "2,456",
     percent: 0.28,
+    symbol: "ETHUSDT",
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const coins = [
     icon: <Icon icon="cryptocurrency-color:doge" />,
     price: "3,456",
     percent: 0.54,
+    symbol: "DOGEUSDT",
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ const coins = [
     icon: <Icon icon="cryptocurrency-color:aave" />,
     price: "456",
     percent: 0.33,
+    symbol: "AAVEUSDT",
   },
   {
     id: 5,
@@ -41,6 +45,7 @@ const coins = [
     icon: <Icon icon="emojione:letter-s" />,
     price: "0.00056",
     percent: 0.46,
+    symbol: "SHIBUSDT",
   },
   {
     id: 6,
@@ -49,6 +54,7 @@ const coins = [
     icon: <Icon icon="emojione:letter-f" />,
     price: "2.456",
     percent: 0.52,
+    symbol: "FLOKIUSDT",
   },
   {
     id: 7,
@@ -57,6 +63,7 @@ const coins = [
     icon: <Icon icon="emojione:letter-d" />,
     price: "56.00",
     percent: 0.19,
+    symbol: "DOGELONUSDT",
   },
   {
     id: 8,
@@ -65,6 +72,7 @@ const coins = [
     icon: <Icon icon="emojione:letter-b" />,
     price: "15,256",
     percent: 0.23,
+    symbol: "BONEUSDT",
   },
   {
     id: 9,
@@ -73,6 +81,7 @@ const coins = [
     icon: <Icon icon="cryptocurrency-color:usdt" />,
     price: "2,600",
     percent: 0.12,
+    symbol: "USDTUSD",
   },
   {
     id: 10,
@@ -81,6 +90,7 @@ const coins = [
     icon: <Icon icon="emojione:letter-s" />,
     price: "18,760",
     percent: 0.27,
+    symbol: "SATUSDT",
   },
   {
     id: 11,
@@ -89,6 +99,7 @@ const coins = [
     icon: <Icon icon="cryptocurrency-color:xrp" />,
     price: "26.00",
     percent: 0.18,
+    symbol: "XRPUSDT",
   },
 ];
 

@@ -1,23 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles";
 import { coins } from "../data";
+import { GlobalContext } from "../context";
 import { ArrowLeft2, ArrowRight2, SearchNormal1 } from "iconsax-react";
 
-const SidebarSwitch = ({openNav}) => {
+const SidebarSwitch = ({ openNav }) => {
   return (
     <div className="bg-sidebarDark cursor-pointer w-8 h-14 rounded-tr-[8px] flex items-center justify-center rounded-br-[8px] border border-inputText">
-      { openNav === true ? (<ArrowLeft2 color="#aaa"size="20" />) : (<ArrowRight2 color="#aaa" size="20" />)}
+      {openNav === true ? (
+        <ArrowLeft2 color="#aaa" size="20" />
+      ) : (
+        <ArrowRight2 color="#aaa" size="20" />
+      )}
     </div>
   );
-}
+};
 
-const Sidebar = ({setPage, toggleSideBar, openNav}) => {
+const Sidebar = ({ setPage, toggleSideBar, openNav }) => {
   const navigate = useNavigate();
+  const { setSymbol } = useContext(GlobalContext);
 
   const location = window.location.pathname;
   const [openTrade, setOpenTrade] = useState(false);
-  // const [id, setId] = useState(false)  
+  // const [id, setId] = useState(false)
 
   console.log(location);
 
@@ -75,22 +81,29 @@ const Sidebar = ({setPage, toggleSideBar, openNav}) => {
             {coins &&
               coins.map((item) => (
                 <div
-                  key={item.id}
-                  className="w-full flex items-center hover:bg-input rounded-xl gap-2 p-2"
+                  className="w-full flex items-center hover:bg-input rounded-xl gap-2 p-2 cursor-pointer"
+                  onClick={() => setSymbol(item.symbol)}
                 >
-                  {item.icon}
-                  <h4 className={styles.tradeCoin}>{item.code}</h4>
-                  <div className="flex flex-col items-end gap">
-                    <p className="text-xs font-medium text-gray-400">
-                      ${item.price}
-                    </p>
-                    {parseFloat(item.percent) > 0.3 ? (
-                      <span className="text-xs text-green">
-                        +{item.percent}%
-                      </span>
-                    ) : (
-                      <span className="text-xs text-red">-{item.percent}%</span>
-                    )}
+                  <div
+                    key={item.id}
+                    className="w-full flex items-center hover:bg-input rounded-xl gap-2 p-2"
+                  >
+                    {item.icon}
+                    <h4 className={styles.tradeCoin}>{item.code}</h4>
+                    <div className="flex flex-col items-end gap">
+                      <p className="text-xs font-medium text-gray-400">
+                        ${item.price}
+                      </p>
+                      {parseFloat(item.percent) > 0.3 ? (
+                        <span className="text-xs text-green">
+                          +{item.percent}%
+                        </span>
+                      ) : (
+                        <span className="text-xs text-red">
+                          -{item.percent}%
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -135,7 +148,7 @@ const Sidebar = ({setPage, toggleSideBar, openNav}) => {
 
       <p
         onClick={() => {
-          navigate("/leaderboard");
+          // navigate("/leaderboard");
         }}
         className={`${
           location === "/leaderboard" ? styles.menuTextHi : styles.comingSoon
@@ -147,7 +160,7 @@ const Sidebar = ({setPage, toggleSideBar, openNav}) => {
 
       <p
         onClick={() => {
-          navigate("/trading-bot");
+          // navigate("/trading-bot");
         }}
         className={`${
           location === "/trading-bot" ? styles.menuTextHi : styles.comingSoon
@@ -159,7 +172,7 @@ const Sidebar = ({setPage, toggleSideBar, openNav}) => {
 
       <p
         onClick={() => {
-          navigate("/nft-marketplace");
+          // navigate("/nft-marketplace");
         }}
         className={`${
           location === "/nft-marketplace"

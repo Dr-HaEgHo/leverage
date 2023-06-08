@@ -19,7 +19,7 @@ const Dash = ({ page, setPage }) => {
           <div className="chart-img w-full h-full relative overflow-hidden">
 
             {/* THE DIV THAT CONTAINS THE ELEMENTS  */}
-            <div className="flex items-center gap-4 py-10 px-8 z-10">
+            <div className="flex items-center gap-4 py-10 z-10">
               {/* THE WALLET */}
               <div className="w-10 h-10">
                 <img src={wallet} alt="wallet.svg" />

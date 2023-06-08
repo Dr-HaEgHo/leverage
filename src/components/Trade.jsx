@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "../styles";
 import { ArrowDown, ArrowDown2, ArrowRight, ArrowSwapHorizontal, Bitcoin, Edit, Glass, Tether } from "iconsax-react";
 import TradingViewWidget from "./TradingView";
 import { Icon } from "@iconify/react";
+import axios from "axios";
 import { coins } from "../data";
 import BottomNav from "./BottomNav";
 
@@ -10,6 +11,7 @@ const buttons = ["Chart", "Order Book", "Trades"]
 const buySell = ["Buy", "Sell"];
 const multipliers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
+const API_URL = "https://papertrade-1-m4693083.deta.app";
 const TradeNav = () => {
   return (
     <div className=" hidden lg:block w-[69%] py-6">
@@ -36,18 +38,15 @@ const TradeNav = () => {
         <table className="w-full">
           <thead>
             <tr className="text-left text-gray-300">
-              <th className="tables1 text-inputText text-xs ">
-                Mark Price
-              </th>
-              <th className="tables1 text-inputText text-xs ">
-                Index Price
-              </th>
-              <th className="tables1 text-inputText text-xs ">
-                Volume(24h)
-              </th>
+              <th className="tables1 text-inputText text-xs ">Mark Price</th>
+              <th className="tables1 text-inputText text-xs ">Index Price</th>
+              <th className="tables1 text-inputText text-xs ">Volume(24h)</th>
               <th className="tables1 text-inputText text-xs flex gap-2 items-center">
                 <p>Funding Rate(8h)</p>
-                <Icon icon="line-md:question-circle" className="text-[16px] cursor-pointer"/>
+                <Icon
+                  icon="line-md:question-circle"
+                  className="text-[16px] cursor-pointer"
+                />
               </th>
             </tr>
           </thead>
@@ -66,6 +65,23 @@ const TradeNav = () => {
 };
 
 const Trade = () => {
+  const [positionData, setPositionData] = useState();
+
+  const getCurrentPositions = async () => {
+    try {
+      console.log("Getting positions...");
+      const res = await axios.get(`${API_URL}/api/v1/positions`);
+      console.log("Positions data:::", res.data);
+      setPositionData(res.data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getCurrentPositions();
+  }, []);
+
 
   const [position, setPosition] = useState("long");
   const [positionTwo, setPositionTwo] = useState("position");
@@ -324,7 +340,52 @@ const Trade = () => {
             {/* THE DIV FOR THE CONTAINER UNDER */}
             <div className="w-full self-stretch p-4 font-DM">
               <div className="w-full h-full flex items-end justify-center">
-                <p className="text-gray-400">You don't have any postions yet</p>
+                <div className="w-full">
+                  <table className="min-w-full border-gray-200">
+                    <thead>
+                      <tr>
+                        <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Symbol
+                        </th>
+                        <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Side
+                        </th>
+                        <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Amount Bought
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {positionData ? (
+                        <>
+                          {positionData.map((data) => (
+                            <tr>
+                              <td className="py-4 px-6 whitespace-nowrap">
+                                <span className="text-sm text-gray-900">
+                                  {data.symbol}
+                                </span>
+                              </td>
+                              <td className="py-4 px-6 whitespace-nowrap">
+                                <span className="text-sm text-gray-900">
+                                  {data.side}
+                                </span>
+                              </td>
+                              <td className="py-4 px-6 whitespace-nowrap">
+                                <span className="text-sm text-gray-900">
+                                  {parseFloat(data.cost_basis * 1000).toFixed(
+                                    2
+                                  )}
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </>
+                      ) : (
+                        <p>You do not have any positions yet</p>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

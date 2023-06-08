@@ -1,11 +1,13 @@
 // TradingViewWidget.jsx
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
+import { GlobalContext } from "../context";
 
 let tvScriptLoadingPromise;
 
 export default function TradingViewWidget() {
   const onLoadScriptRef = useRef();
+  const { symbol } = useContext(GlobalContext);
 
   useEffect(() => {
     onLoadScriptRef.current = createWidget;
@@ -37,7 +39,7 @@ export default function TradingViewWidget() {
           //   autosize: true,
           width: "100%",
           height: "100%",
-          symbol: "BINANCE:BTCUSDT",
+          symbol: symbol,
           interval: "D",
           timezone: "Etc/UTC",
           theme: "dark",
@@ -46,16 +48,15 @@ export default function TradingViewWidget() {
           toolbar_bg: "#1d1d1d",
           enable_publishing: false,
           gridColor: "#4242422d",
-        //   hide_top_toolbar: true,
+          //   hide_top_toolbar: true,
           withdateranges: true,
           backgroundColor: "#1d1d1d",
           allow_symbol_change: true,
-          studies: ["STD;Price_Volume_Trend"],
           container_id: "tradingview_48a40",
         });
       }
     }
-  }, []);
+  }, [symbol]);
 
   return (
     <div className="tradingview-widget-container">

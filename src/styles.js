@@ -1,11 +1,10 @@
-
 const styles = {
   menuTextHi:
     "text-white pl-16 font-DM font-medium cursor-pointer text-[16px] 2xl:text-[18px] hover:text-white transition duration-200",
   menuText:
     " text-sidebarText pl-16 font-DM font-medium cursor-pointer text-[16px] 2xl:text-[18px] hover:text-accent transition duration-200",
   comingSoon:
-    " text-inputText pl-16 font-DM font-medium cursor-pointer text-[16px] 2xl:text-[18px] hover:text-accent transition duration-200",
+    " text-inputText pl-16 font-DM font-medium cursor-pointer text-[16px] 2xl:text-[18px] transition duration-200",
   container: "w-[94%] lg:w-[86%] max-w-[94%] lg:max-w-[86%] mx-auto ",
   container1: "w-full lg:w-[96%] max-w-full lg:max-w-[96%] mx-auto ",
   tradeCoin: "flex-1 text-sm 2xl:text-base text-gray-400 font-medium font-DM",

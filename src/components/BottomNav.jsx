@@ -13,7 +13,10 @@ const BottomNav = () => {
   const [selectedLink, setSelectedLink] = useState("Trade");
 
   return (
-    <div className="z-10 fixed bottom-0 font-DM bg-sidebar text-gray-300 w-full flex items-end justify-between border-t border-inputText py-4 px-8">
+    <div
+      className="z-10 fixed bottom-0 font-Lato bg-sidebar text-gray-300 w-full flex items-end justify-between border-t
+     border-inputText py-4 px-8"
+    >
       {links &&
         links.map((item) => (
           <div
@@ -24,7 +27,7 @@ const BottomNav = () => {
             className="flex flex-1 flex-col items-center gap-2 transition duration-200"
           >
             {item.icon}
-            <p className="text-[10px]">{item.title}</p> 
+            <p className="text-[10px]">{item.title}</p>
           </div>
         ))}
     </div>

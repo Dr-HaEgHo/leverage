@@ -36,13 +36,17 @@ const Sidebar = ({ setPage, toggleSideBar, openNav }) => {
   }, [location]);
 
   return (
-    <div className="w-full h-full relative bg-sidebar pt-[50%] pb-[30%] flex flex-col gap-4 border-r border-inputText text-sidebarText font-DM scroll-yy">
+    <div
+      className="w-full h-full relative bg-sidebar pt-[50%] pb-[30%] flex flex-col gap-4 border-r
+     border-inputText text-sidebarText font-Lato scroll-yy"
+    >
       <div onClick={toggleSideBar} className="absolute z-30 left-[100%] top-20">
         <SidebarSwitch openNav={openNav} />
       </div>
       <p
         onClick={() => {
           navigate("/");
+          toggleSideBar();
         }}
         className={`${location === "/" ? styles.menuTextHi : styles.menuText}`}
       >
@@ -120,68 +124,30 @@ const Sidebar = ({ setPage, toggleSideBar, openNav }) => {
         }`}
       >
         {/* Stake */}
-        Coming Soon
+        Trade Stocks <span className="text-[12px]">Coming Soon</span>
+      </p>
+      <p
+        onClick={() => {
+          // navigate("/stake");
+        }}
+        className={`${
+          location === "/stake" ? styles.menuTextHi : styles.comingSoon
+        }`}
+      >
+        {/* Stake */}
+        Copytrading <span className="text-[12px]">Coming Soon</span>
       </p>
 
       <p
         onClick={() => {
           navigate("/dash");
+          toggleSideBar();
         }}
         className={`${
           location === "/dash" ? styles.menuTextHi : styles.menuText
         }`}
       >
         Dashboard
-      </p>
-
-      <p
-        onClick={() => {
-          // navigate("/copytrading");
-        }}
-        className={`${
-          location === "/copytrading" ? styles.menuTextHi : styles.comingSoon
-        }`}
-      >
-        {/* Copytrading */}
-        Coming Soon
-      </p>
-
-      <p
-        onClick={() => {
-          // navigate("/leaderboard");
-        }}
-        className={`${
-          location === "/leaderboard" ? styles.menuTextHi : styles.comingSoon
-        }`}
-      >
-        {/* Leaderboard */}
-        Coming Soon
-      </p>
-
-      <p
-        onClick={() => {
-          // navigate("/trading-bot");
-        }}
-        className={`${
-          location === "/trading-bot" ? styles.menuTextHi : styles.comingSoon
-        }`}
-      >
-        {/* AI Trading Bot */}
-        Coming Soon
-      </p>
-
-      <p
-        onClick={() => {
-          // navigate("/nft-marketplace");
-        }}
-        className={`${
-          location === "/nft-marketplace"
-            ? styles.menuTextHi
-            : styles.comingSoon
-        }`}
-      >
-        {/* NFT Marketplace */}
-        Coming Soon
       </p>
     </div>
   );

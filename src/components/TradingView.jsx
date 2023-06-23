@@ -35,8 +35,7 @@ export default function TradingViewWidget() {
         document.getElementById("tradingview_48a40") &&
         "TradingView" in window
       ) {
-        new window.TradingView.widget({
-          //   autosize: true,
+        const widgetOptions = {
           width: "100%",
           height: "100%",
           symbol: symbol,
@@ -48,12 +47,13 @@ export default function TradingViewWidget() {
           toolbar_bg: "#1d1d1d",
           enable_publishing: false,
           gridColor: "#4242422d",
-          //   hide_top_toolbar: true,
+          hide_top_toolbar: true,
           withdateranges: true,
           backgroundColor: "#1d1d1d",
-          allow_symbol_change: true,
           container_id: "tradingview_48a40",
-        });
+          screener_type: "crypto_mkt",
+        };
+        const tvWidget = new window.TradingView.widget(widgetOptions);
       }
     }
   }, [symbol]);

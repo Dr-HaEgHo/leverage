@@ -1,0 +1,50 @@
+.content-slider {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  height: 200px; /* Set the desired height */
+}
+
+.content-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+.slide-next-1 {
+  transform: translateX(-50%);
+}
+
+.slide-next-2 {
+  transform: translateX(-100%);
+}
+
+.slide-prev-1 {
+  transform: translateX(50%);
+}
+
+.slide-prev-2 {
+  transform: translateX(100%);
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.slider-controls button {
+  padding: 0.5rem 1rem;
+  background-color: #4a5568;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
